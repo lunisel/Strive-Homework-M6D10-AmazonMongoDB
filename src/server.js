@@ -1,15 +1,32 @@
 import express from "express";
 import cors from "cors";
+import listEndpoints from "express-list-endpoints";
+import mongoose from "mongoose";
+import productRouter from "./services/products/index.js";
 
-const port = process.env.PORT;
+
+const port = process.env.PORT || 3001 ;
 
 const server = express();
 
 server.use(cors());
 server.use(express.json());
 
-server.listen(port, async () => {
-  console.log(`Server is running on port ${port}`);
-});
+/* **************ROUTES ***************** */
 
-server.on("error", (error) => console.log(`Server faild : ${error}`));
+server.use("/products",productRouter)
+
+/* ***************CONNECTION TO MONGO COMPASS */
+mongoose.connect(process.env.MONGO_CONNECTION)
+
+mongoose.connection.on("connected", () => {
+    console.log("Connection Successful to mongo!");
+    server.listen(port, () => {
+        console.table(listEndpoints(server));
+        console.log(`Server is running on port ${port}`)
+    })
+})
+
+mongoose.connection.on("error", err => {
+    console.log("MONGO ERROR ", err);
+})
