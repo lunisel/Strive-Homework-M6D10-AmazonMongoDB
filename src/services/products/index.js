@@ -19,7 +19,7 @@ productRouter.post('/', async (req, res, next)=> {
 productRouter.get("/", async(req,res,next) => {
     try {
       
-      const products = await ProductModel.find({}).populate("author")
+      const products = await ProductModel.find({}).populate("category")
   
       res.send(products)
       
