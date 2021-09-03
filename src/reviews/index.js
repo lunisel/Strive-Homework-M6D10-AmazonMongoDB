@@ -1,5 +1,5 @@
 import express from "express";
-import createHttpError from "http-errors";
+import createError from "http-errors";
 import q2m from "query-to-mongo";
 import ReviewModel from "./schema.js";
 
@@ -37,12 +37,10 @@ reviewRouter.get("/", async (req, resp, next) => {
 reviewRouter.get("/:id", async (req, resp, next) => {
   try {
     const review = await ReviewModel.findById(req.params.id);
-    if (!review) {
-      resp
-        .status(404)
-        .send({ message: `Review with id ${req.params.id} not found` });
-    } else {
+    if (review) {
       resp.send(review);
+    } else {
+      next(createError(404, `Review with id ${req.params.id} not found`));
     }
   } catch (err) {
     next(err);
