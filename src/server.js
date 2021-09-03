@@ -1,30 +1,33 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import productRouter from "./services/products/index.js";
+import listEndpoints from "express-list-endpoints";
 import reviewRouter from "./reviews/index.js";
 
-const port = process.env.PORT;
-const mongoConnection = process.env.MONGO_CONNECTION_STRING;
+const port = process.env.PORT || 3001;
 
 const server = express();
 
 server.use(cors());
 server.use(express.json());
 
-server.use("/reviews", reviewRouter);
+/* **************ROUTES ***************** */
 
-server.listen(port, async () => {
-  try {
-    mongoose.connect(mongoConnection, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log(
-      `Server is running on port ${port} and is connected to mongoDB`
-    );
-  } catch (err) {
-    console.log(`Db connection faild : ${err}`);
-  }
+server.use("/reviews", reviewRouter);
+server.use("/products", productRouter);
+
+/* ***************CONNECTION TO MONGO COMPASS */
+mongoose.connect(process.env.MONGO_CONNECTION);
+
+mongoose.connection.on("connected", () => {
+  console.log("Connection Successful to mongo!");
+  server.listen(port, () => {
+    console.table(listEndpoints(server));
+    console.log(`Server is running on port ${port}`);
+  });
 });
 
-server.on("error", (error) => console.log(`Server faild : ${error}`));
+mongoose.connection.on("error", (err) => {
+  console.log("MONGO ERROR ", err);
+});
