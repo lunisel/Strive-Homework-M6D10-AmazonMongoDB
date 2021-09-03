@@ -1,7 +1,7 @@
 import express from "express"
 import q2m from "query-to-mongo"
 
-import CategoryModel from "./authorSchema.js"
+import CategoryModel from "./schema.js"
 
 const categoryRouter = express.Router()
 
@@ -50,4 +50,4 @@ categoryRouter.post("/", async (req, res, next) => {
     }
   })
 
-export default catergoryRouter
+export default categoryRouter
