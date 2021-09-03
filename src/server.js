@@ -19,7 +19,7 @@ server.use(express.json());
 server.use("/reviews", reviewRouter);
 server.use("/products", productRouter);
 server.use("/carts", cartRouter);
-server.use("/users", cartRouter);
+server.use("/users", usersRouter);
 
 /* ***************CONNECTION TO MONGO COMPASS */
 mongoose.connect(process.env.MONGO_CONNECTION);
