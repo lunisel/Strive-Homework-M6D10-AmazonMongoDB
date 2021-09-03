@@ -10,11 +10,23 @@ productRouter.post("/", async (req, res, next) => {
     const newProduct = new ProductModel(req.body);
     const { _id } = await newProduct.save();
 
-    res.status(201).send(`My unique id: ${_id}`);
-  } catch (error) {
-    next(error);
-  }
-});
+        res.status(201).send(`My unique id: ${_id}`)
+    } catch (error) {
+        next(error)
+    }
+})
+
+productRouter.get("/", async(req,res,next) => {
+    try {
+      
+      const products = await ProductModel.find({}).populate("category")
+  
+      res.send(products)
+      
+    } catch (error) {
+      next(error)
+    }
+  })
 
 productRouter.get("/", async (req, res, next) => {
   try {
