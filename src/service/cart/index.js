@@ -1,22 +1,37 @@
-import mongoose from "mongoose";
+import { Router } from "express";
+import cartModel from "./schema.js";
 
-const { Schema, model } = mongoose;
+const cartRouter = Router();
 
-const cartSchema = new Schema(
-  {
-    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    products: [
-      {
-        name: String,
-        brand: String,
-        imageUrl: String,
-        price: Number,
-        quantity: Number,
-      },
-    ],
-    status: { type: String, enum: ["unpaid", "paid"] },
-  },
-  { timestamps: true }
-);
+cartRouter.post("/", async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+});
+cartRouter.get("/", async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+});
+cartRouter.get("/", async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+});
+cartRouter.put("/", async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+});
+cartRouter.delete("/", async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+});
 
-export default model("Cart", cartSchema);
+export default cartRouter;
