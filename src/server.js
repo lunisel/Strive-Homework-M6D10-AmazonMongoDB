@@ -3,8 +3,8 @@ import cors from "cors";
 import mongoose from "mongoose";
 import productRouter from "./services/products/index.js";
 import listEndpoints from "express-list-endpoints";
-import reviewRouter from "./reviews/index.js";
-import cartRouter from "./service/cart/index.js";
+import reviewRouter from "./services/reviews/index.js";
+import cartRouter from "./services/cart/index.js";
 
 const port = process.env.PORT || 3001;
 
