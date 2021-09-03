@@ -1,0 +1,22 @@
+{
+  "name": "Strive-Homework-M6D10",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config src/server.js",
+    "dev": "nodemon -r dotenv/cofing src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lunisel/Strive-Homework-M6D10-AmazonMongoDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lunisel/Strive-Homework-M6D10-AmazonMongoDB/issues"
+  },
+  "homepage": "https://github.com/lunisel/Strive-Homework-M6D10-AmazonMongoDB#readme"
+}
