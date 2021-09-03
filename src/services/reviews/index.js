@@ -2,6 +2,7 @@ import express from "express";
 import createError from "http-errors";
 import q2m from "query-to-mongo";
 import ReviewModel from "./schema.js";
+import { ProductModel } from "../products/schema.js";
 
 const reviewRouter = express.Router();
 
